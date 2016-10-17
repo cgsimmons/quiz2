@@ -1,0 +1,34 @@
+<h1>Support Requests</h1>
+<%= form_tag(requests_path, :method => "get", id: "search-form") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Search Requests" %>
+<%= submit_tag "Search" %>
+<% end %>
+<% if !@requests.present? %>
+  <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
+<% else %>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Department</th>
+      <th>Message</th>
+      <th>Actions</th>
+    </tr>
+  <% @requests.each do |p| %>
+    <tr>
+      <td><%= p.name %></td>
+      <td><%= p.email %></td>
+      <td><%= p.department %></td>
+      <td class="message"><%= link_to p.message, request_path(p) %></td>
+      <td><%= link_to 'edit', edit_request_path(p)%>
+      <%= link_to 'delete', request_path(p),
+                              method: :delete,
+                              data: {confirm: 'Are you sure?'}%>
+      <%= link_to p.done ? 'Not Done' : 'Done',
+                              update_done_path(p),
+                              method: :patch%></td>
+    </tr>
+  <% end %>
+  </table>
+  <%= paginate @requests %>
+<% end %>

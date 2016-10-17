@@ -1,0 +1,13 @@
+<h1>Department Stats</h1>
+<table>
+  <tr>
+    <th>Departments</th>
+    <th>Support Requests</th>
+  </tr>
+<% @departments.each do |d| %>
+  <tr>
+    <td><%= d['department'] %></td>
+    <td><%= d['count'] %></td>
+  </tr>
+<% end %>
+</table>

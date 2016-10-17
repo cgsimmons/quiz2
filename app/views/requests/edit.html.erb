@@ -1,0 +1,24 @@
+<h1>Edit Support Request</h1>
+<p class='error'><%= @request.errors.full_messages.join(', ') %></p>
+<%= form_for @request do |req| %>
+  <div>
+    <%= req.label :name %>
+    <%= req.text_field :name %>
+  </div>
+  <div>
+    <%= req.label :email %>
+    <%= req.text_field :email %>
+  </div>
+  <div>
+    <%= req.label :department %>
+    <% for dept in @departments %>
+      <%=  req.radio_button :department, dept[:department]%>
+      <%= req.label :department, dept[:department]%>
+    <% end %>
+  </div>
+  <div>
+    <%= req.label :message %>
+    <%= req.text_field :message %>
+  </div>
+  <%= req.submit 'Save'%>
+<% end %>
