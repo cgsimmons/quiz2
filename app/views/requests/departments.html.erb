@@ -5,7 +5,7 @@
     <th>Support Requests</th>
   </tr>
 <% @departments.each do |d| %>
-  <tr>
+  <tr class="<%= cycle('even', 'odd') -%>">
     <td><%= d['department'] %></td>
     <td><%= d['count'] %></td>
   </tr>

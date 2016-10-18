@@ -4,7 +4,8 @@
 <p>Department: <%= @request.department %></p>
 <p>Message:<br><%= @request.message %></p>
 <br>
-<%= link_to 'edit', edit_request_path(@request)%>
-<%= link_to 'delete', request_path(@request),
+<%= button_to 'Edit', edit_request_path(@request),
+                        method: :get%>
+<%= button_to 'Delete', request_path(@request),
                         method: :delete,
                         data: {confirm: 'Are you sure?'}%>
